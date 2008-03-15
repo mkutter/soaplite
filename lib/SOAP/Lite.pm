@@ -19,7 +19,7 @@ package SOAP::Lite;
 use 5.005;
 use strict;
 use vars qw($VERSION);
-$VERSION = '0.71';
+$VERSION = '0.71.01';
 
 # ======================================================================
 
@@ -1128,7 +1128,7 @@ sub encode_object {
     elsif (UNIVERSAL::isa($object => 'ARRAY')) {
         # Added in SOAP::Lite 0.65_6 to fix an XMLRPC bug
         return $self->encodingStyle eq ""
-            || ref $self eq 'XMLRPC::Serializer'
+            || $self->isa('XMLRPC::Serializer')
                 ? $self->encode_array($object, $name, $type, $attr)
                 : $self->encode_literal_array($object, $name, $type, $attr);
     }
