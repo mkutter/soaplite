@@ -1312,11 +1312,10 @@ sub register_ns {
 }
 
 sub find_prefix {
-    my $self = shift;
-    my ($ns) = @_;
-    foreach my $this_ns (keys %{$self->{'_namespaces'}}) {
-        return $self->{'_namespaces'}->{$this_ns} if ($ns eq $this_ns);
-    }
+    my ($self, $ns) = @_;
+    return (exists $self->{'_namespaces'}->{$ns})
+        ? $self->{'_namespaces'}->{$ns}
+        : ();
 }
 
 sub fixattrs {
