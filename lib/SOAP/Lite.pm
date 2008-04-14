@@ -2443,7 +2443,7 @@ sub byName {
 package SOAP::Server;
 
 use Carp ();
-
+use Scalar::Util qw(weaken);
 sub DESTROY { SOAP::Trace::objects('()') }
 
 sub initialize {
