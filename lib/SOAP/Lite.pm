@@ -22,7 +22,7 @@ use vars qw($VERSION);
 # perl's notion of a version is a series of one unbounded and 2 3-digit values
 # separated by .
 # to get it above '0.71' one has to say 0.710.001
-use version; $VERSION = qv(0.710.002);
+$VERSION = '0.71.02';
 # ======================================================================
 
 package SOAP::XMLSchemaApacheSOAP::Deserializer;
