@@ -13,7 +13,7 @@ package XMLRPC::Lite;
 use SOAP::Lite;
 use strict;
 use vars qw($VERSION);
-use version; $VERSION = qv('0.71.04');
+use version; $VERSION = qv('0.710.05');
 
 # ======================================================================
 
