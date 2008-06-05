@@ -13,7 +13,7 @@ package XMLRPC::Lite;
 use SOAP::Lite;
 use strict;
 use vars qw($VERSION);
-use version; $VERSION = qv('0.710.05');
+use version; $VERSION = qv('0.710.06');
 
 # ======================================================================
 
@@ -264,7 +264,7 @@ sub BEGIN {
 
 package XMLRPC::Deserializer;
 
-@XMLRPC::Deserializer::ISA = qw(SOAP::Lite::Deserializer);
+@XMLRPC::Deserializer::ISA = qw(SOAP::Deserializer);
 
 BEGIN {
     no strict 'refs';
