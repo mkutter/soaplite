@@ -15,6 +15,9 @@ http://rt.cpan.org/Public/Dist/Display.html?Name=SOAP-Lite
 -----------------------------------------------------------------------
 THIS RELEASE
 -----------------------------------------------------------------------
+0.710.06
+   ! #36477 SOAP::Lite Envelope not stripped down for XMLRPC
+   ! #36455 XMLRPC::Transport::HTTP::CGI generates extra params
 0.710.05
    ! got version number right, finally. Thanks to Graham Barr,
    Andreas J. Koenig and Matt S Trout (in alphabetical order) for support
