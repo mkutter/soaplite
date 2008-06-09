@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More tests => 6; #qw(no_plan);
+use Test::More tests => 8; #qw(no_plan);
 
 use_ok qw(SOAP::Lite);
 
@@ -20,3 +20,7 @@ eval {
 };
 like $@, qr{^Element \s 'xmlfoo' \s can't \s be \s allowed}x, 'error on <xmlfoo/>';
 
+
+my $xml = $serializer->envelope('fault', faultstrind => '>>> foo <<<');
+like $xml, qr{\&gt;\&gt;\&gt;}x, 'fault escaped OK';
+unlike $xml, qr{\&amp;gt;}x, 'fault escaped OK';
