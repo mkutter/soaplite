@@ -15,6 +15,11 @@ http://rt.cpan.org/Public/Dist/Display.html?Name=SOAP-Lite
 -----------------------------------------------------------------------
 THIS RELEASE
 -----------------------------------------------------------------------
+0.710.07
+   ! [ 1963995 ] > not deserialized in result
+   ! [ 1833218 ] < and > not deserialized in faultstring/detail
+   ! [ 1959329 ] Incorrect Content-Type while sending requests with no parts
+   ! [ 1945385 ] Incorrect starting part detection for Multipart/Related
 0.710.06
    ! #36477 SOAP::Lite Envelope not stripped down for XMLRPC
    ! #36455 XMLRPC::Transport::HTTP::CGI generates extra params
