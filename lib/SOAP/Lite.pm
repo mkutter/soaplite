@@ -374,7 +374,14 @@ my %encode_attribute = ('&' => '&amp;', '>' => '&gt;', '<' => '&lt;', '"' => '&q
 sub encode_attribute { (my $e = $_[0]) =~ s/([&<>\"])/$encode_attribute{$1}/g; $e }
 
 my %encode_data = ('&' => '&amp;', '>' => '&gt;', '<' => '&lt;', "\xd" => '&#xd;');
-sub encode_data { my $e = $_[0]; if ($e) { $e =~ s/([&<>\015])/$encode_data{$1}/g; $e =~ s/\]\]>/\]\]&gt;/g; } $e }
+sub encode_data {
+    my $e = $_[0];
+    if ($e) {
+        $e =~ s/([&<>\015])/$encode_data{$1}/g;
+        $e =~ s/\]\]>/\]\]&gt;/g;
+    }
+    $e
+}
 
 # methods for internal tree (SOAP::Deserializer, SOAP::SOM and SOAP::Serializer)
 
@@ -1492,8 +1499,8 @@ sub envelope {
         # Find all the SOAP Body elements
         else {
             # proposed resolution for [ 1700326 ] encode_data called incorrectly in envelope
-            # push(@parameters, $_);
-            push (@parameters, SOAP::Utils::encode_data($_));
+            push(@parameters, $_);
+            # push (@parameters, SOAP::Utils::encode_data($_));
         }
     }
     my $header = @header ? SOAP::Data->set_value(@header) : undef;
@@ -1546,7 +1553,7 @@ sub envelope {
         $body = SOAP::Data-> name(SOAP::Utils::qualify($self->envprefix => 'Fault'))
           -> value(\SOAP::Data->set_value(
                 SOAP::Data->name(faultcode => SOAP::Utils::qualify($self->envprefix => $parameters[0]))->type(""),
-                SOAP::Data->name(faultstring => $parameters[1])->type(""),
+                SOAP::Data->name(faultstring => SOAP::Utils::encode_data($parameters[1]))->type(""),
                 defined($parameters[3])
                     ? SOAP::Data->name(faultactor => $parameters[3])->type("")
                     : (),
@@ -1555,7 +1562,7 @@ sub envelope {
                         my $detail = $parameters[2];
                         ref $detail
                             ? \$detail
-                            : $detail
+                            : SOAP::Utils::encode_data($detail)
                     })
                     : (),
         ));
