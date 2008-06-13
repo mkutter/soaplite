@@ -19,7 +19,7 @@ package SOAP::Lite;
 use 5.005;
 use strict;
 use vars qw($VERSION);
-use version; $VERSION = qv('0.710.06');
+use version; $VERSION = qv('0.710.07');
 # ======================================================================
 
 package SOAP::XMLSchemaApacheSOAP::Deserializer;
