@@ -3207,7 +3207,8 @@ EOP
         }
         $self->{'_stub'} .= "    parameters => [\n";
         foreach (@{$services->{$service}{parameters}}) {
-#           next unless $_;
+            # This is a workaround for https://sourceforge.net/tracker/index.php?func=detail&aid=2001592&group_id=66000&atid=513017
+            next unless ref $_;
             $self->{'_stub'} .= "      SOAP::Data->new(name => '".$_->name."', type => '".$_->type."', attr => {";
             $self->{'_stub'} .= do {
                 my %attr = %{$_->attr};
@@ -3685,8 +3686,8 @@ sub call {
         for ($result->dataof(SOAP::SOM::paramsout), $result->dataof(SOAP::SOM::headers)) {
             my $signature = join $;, $_->name, $_->type || '';
             if (exists $signatures{$signature}) {
-    	        my $param = $signatures{$signature};
-    	        my($value) = $_->value; # take first value
+                my $param = $signatures{$signature};
+                my($value) = $_->value; # take first value
 
                 # fillup parameters
                 UNIVERSAL::isa($_[$param] => 'SOAP::Data')
@@ -4611,11 +4612,11 @@ intended for the response.
     my $self = shift;
     my $envelope = pop;
     my $ent = build MIME::Entity
-	'Id'          => "<1234>",
-	'Type'        => "text/xml",
-	'Path'        => "some.xml",
-	'Filename'    => "some.xml",
-	'Disposition' => "attachment";
+    'Id'          => "<1234>",
+    'Type'        => "text/xml",
+    'Path'        => "some.xml",
+    'Filename'    => "some.xml",
+    'Disposition' => "attachment";
     return SOAP::Data->name("foo" => "blah blah blah"),$ent;
   }
 
