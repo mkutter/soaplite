@@ -82,7 +82,10 @@ sub new {
 
     return $class if ref $class;  # skip if we're already object...
 
-    push @ISA,$USERAGENT_CLASS;
+    if (! grep { $_ eq $USERAGENT_CLASS } @ISA ) {
+        push @ISA,$USERAGENT_CLASS;
+    }
+
     eval("require $USERAGENT_CLASS")
         or die "Could not load UserAgent class $USERAGENT_CLASS: $@";
 
@@ -102,7 +105,7 @@ sub new {
     die "SOAP::Transport::HTTP::Client must inherit from LWP::UserAgent, or one of its subclasses"
         if !$self->isa("LWP::UserAgent");
 
-    $self->agent(join '/', 'SOAP::Lite', 'Perl', SOAP::Transport::HTTP->VERSION);
+    $self->agent(join '/', 'SOAP::Lite', 'Perl', $SOAP::Transport::HTTP::VERSION);
     $self->options({});
 
     while (@methods) {
