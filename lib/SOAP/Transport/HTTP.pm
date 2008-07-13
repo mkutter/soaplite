@@ -559,7 +559,7 @@ sub new {
     my $http_daemon = $self->http_daemon_class;
     eval "require $http_daemon"
         or Carp::croak $@
-            unless UNIVERSAL::can($http_daemon => 'new');
+            unless $http_daemon->can('new');
 
     $self->{_daemon} = $http_daemon->new(@params)
         or Carp::croak "Can't create daemon: $!";
@@ -609,7 +609,7 @@ sub handle {
         }
         # replaced ->close, thanks to Sean Meisner <Sean.Meisner@VerizonWireless.com>
         # shutdown() doesn't work on AIX. close() is used in this case. Thanks to Jos Clijmans <jos.clijmans@recyfin.be>
-        UNIVERSAL::can($c, 'shutdown')
+        $c->can('shutdown')
             ? $c->shutdown(2)
             : $c->close();
         $c->close;
