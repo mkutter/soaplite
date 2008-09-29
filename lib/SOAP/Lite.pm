@@ -1214,7 +1214,8 @@ sub encode_literal_array {
     # and do not crete a wrapper array tag.
     if (!$self->autotype) {
         $name ||= gen_name;
-        return map {$self->encode_object($_, $name)} @$array;
+        my @items = map {$self->encode_object($_, $name)} @$array;
+        return [ $name, {%$attr}, [@items], $self->gen_id($array) ];
     }
 
     my $items = 'item';
@@ -1846,14 +1847,39 @@ sub namespaceuriof {
         : @{$self->{_current}} ? (SOAP::Utils::splitlongname(o_lname($self->{_current}->[0])))[0] : undef;
 }
 
+#sub _as_data {
+#    my $self = shift;
+#    my $pointer = shift;
+#
+#    SOAP::Data
+#        -> new(prefix => '', name => o_qname($pointer), name => o_lname($pointer), attr => o_lattr($pointer))
+#        -> set_value(o_value($pointer));
+#}
+
 sub _as_data {
     my $self = shift;
-    my $pointer = shift;
+    my $node = shift;
 
-    SOAP::Data
-        -> new(prefix => '', name => o_qname($pointer), name => o_lname($pointer), attr => o_lattr($pointer))
-        -> set_value(o_value($pointer));
+    my $data = SOAP::Data->new( prefix => '',
+        # name => o_qname has side effect: sets namespace !
+        name => o_qname($node),
+        name => o_lname($node),
+        attr => o_lattr($node) );
+
+    if ( defined o_child($node) ) {
+        my @children;
+        foreach my $child ( @{ o_child($node) } ) {
+            push( @children, $self->_as_data($child) );
+        }
+        $data->set_value( \SOAP::Data->value(@children) );
+    }
+    else {
+        $data->set_value( o_value($node) );
+    }
+
+    return $data;
 }
+
 
 sub match {
     my $self = shift;

@@ -15,6 +15,10 @@ http://rt.cpan.org/Public/Dist/Display.html?Name=SOAP-Lite
 -----------------------------------------------------------------------
 THIS RELEASE
 -----------------------------------------------------------------------
+0.710.09
+   ! #39101: Apache2::Const::HTTP_BAD_REQUEST not defined
+   ! #39672: serialization and autotype 'off' 
+
 0.710.08 - Jul 13 2008
    ! [ 2015071 ] HTTP header is no more accessible
    The HTTP header can be pre-filled again. Now, the HTTP header is cloned
