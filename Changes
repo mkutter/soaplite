@@ -16,8 +16,12 @@ http://rt.cpan.org/Public/Dist/Display.html?Name=SOAP-Lite
 THIS RELEASE
 -----------------------------------------------------------------------
 0.710.09
+   ! [2777361] SOAP 1.2 Content-Type rejected
+   ! #41937 ([patch] enable more tests)
    ! #39101: Apache2::Const::HTTP_BAD_REQUEST not defined
-   ! #39672: serialization and autotype 'off' 
+   ! #39672: serialization and autotype 'off'
+   ! #41348: t/SOAP/Transport/HTTP/CGI.t failing on 5.6.x
+   ! #20569: XMLRPC::Lite "wrong element 'nil'" exception on '<value><nil/></value>'
 
 0.710.08 - Jul 13 2008
    ! [ 2015071 ] HTTP header is no more accessible

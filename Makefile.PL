@@ -163,7 +163,7 @@ if ($noncoretests) {
     $tests = join ' ' , @test_from;
 }
 else {
-    $tests = join ' ', glob ('t/0*.t');
+    $tests = join ' ', glob ('t/0*.t t/*xmlparserlite.t t/*loopback.t');
 }
 
 ExtUtils::MakeMaker::WriteMakefile(
