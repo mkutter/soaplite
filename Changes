@@ -16,6 +16,7 @@ http://rt.cpan.org/Public/Dist/Display.html?Name=SOAP-Lite
 THIS RELEASE
 -----------------------------------------------------------------------
 0.710.09
+   ! #44568 Tracing unavailable when SOAP::Lite is used as a server 
    ! #44195 submitting patches / mention Nginx transport module in documentation
    ! [2777361] SOAP 1.2 Content-Type rejected
    ! #41937 ([patch] enable more tests)
