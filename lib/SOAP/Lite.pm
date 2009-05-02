@@ -5494,6 +5494,22 @@ http://www.perl.com/CPAN-local/authors/id/A/AS/ASANDSTRM/XML-Parser-2.27-bin-1-M
 
 =back
 
+=head1 RELATED MODULES
+
+=head2 Transport Modules
+
+SOAP::Lite allows to add support for additional transport protocols, or
+server handlers, via separate modules implementing the SOAP::Transport::* 
+interface. The following modules are available from CPAN:
+
+=over 
+
+=item * SOAP-Transport-HTTP-Nginx
+
+L<SOAP::Transport::HTTP::Nginx|SOAP::Transport::HTTP::Nginx> provides a transport module for nginx (<http://nginx.net/>)
+
+=back
+
 =head1 AVAILABILITY
 
 You can download the latest version SOAP::Lite for Unix or SOAP::Lite for
