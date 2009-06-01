@@ -4727,7 +4727,7 @@ C<SOAP::SOM::parts()> accessor.
 =head4 Server receiving an attachment
 
 Servers, like clients, use the S<SOAP::SOM> module to access attachments
-trasmitted to it.
+transmitted to it.
 
   package Attachment;
   use SOAP::Lite;
