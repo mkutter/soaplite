@@ -5521,7 +5521,7 @@ Win32 from the following sources:
 PPM packages are also available from sourceforge.
 
 You are welcome to send e-mail to the maintainers of SOAP::Lite with your
-with your comments, suggestions, bug reports and complaints.
+comments, suggestions, bug reports and complaints.
 
 =head1 ACKNOWLEDGEMENTS
 
