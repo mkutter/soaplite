@@ -25,6 +25,7 @@ THIS RELEASE
    ! #41348: t/SOAP/Transport/HTTP/CGI.t failing on 5.6.x
    ! #20569: XMLRPC::Lite "wrong element 'nil'" exception on '<value><nil/></value>'
    + require Task::Weaken
+   + better META.yml generated (Alexandr Ciornii)
 
 0.710.08 - Jul 13 2008
    ! [ 2015071 ] HTTP header is no more accessible

@@ -178,6 +178,15 @@ ExtUtils::MakeMaker::WriteMakefile(
      },
     'EXE_FILES'     => ['bin/SOAPsh.pl', 'bin/XMLRPCsh.pl', 'bin/stubmaker.pl'],
     test            => {TESTS => $tests},
+    ($ExtUtils::MakeMaker::VERSION ge '6.48'? 
+     (MIN_PERL_VERSION => 5.005,
+      META_MERGE => {
+          resources=> {
+              repository => 'https://soaplite.svn.sourceforge.net/svnroot/soaplite/branches/0.71',
+          },
+          keywords => ['SOAP','SOAP client','SOAP server'],
+      },
+     ) : ()),
 );
 
 
