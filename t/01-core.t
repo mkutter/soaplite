@@ -279,7 +279,7 @@ EOBASE64
 
 
 {
-    print "Serialization of docunemt/literal arrays\n";
+    print "Serialization of document/literal arrays\n";
     # check array serialization with autotyping disabled
     my $serializer = SOAP::Serializer->new;
     $serializer->autotype(0);
