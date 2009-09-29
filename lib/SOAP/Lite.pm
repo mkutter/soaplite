@@ -546,6 +546,7 @@ package SOAP::Data;
 use vars qw(@ISA @EXPORT_OK);
 use Exporter;
 use Carp ();
+use SOAP::Lite::Deserializer::XMLSchemaSOAP1_2;
 
 @ISA = qw(Exporter);
 @EXPORT_OK = qw(name type attr value uri);
