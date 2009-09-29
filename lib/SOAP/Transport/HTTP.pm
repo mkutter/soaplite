@@ -486,6 +486,19 @@ sub handle {
     my $self = shift->new;
 
     my $length = $ENV{'CONTENT_LENGTH'} || 0;
+    my $chunked = ($ENV{'HTTP_TRANSFER_ENCODING'} =~ /^chunked.*$/  ) || 0;
+
+    my $content = q{};
+
+    if ($chunked) {
+        my $buffer;
+        binmode(STDIN);
+        while( read( STDIN, my $buffer, 1024 ) ){
+            $content .= $buffer;
+        }
+        $length = length($content);
+    }
+
 
     if (!$length) {
         $self->response(HTTP::Response->new(411)) # LENGTH REQUIRED
@@ -498,11 +511,13 @@ sub handle {
             print "HTTP/1.1 100 Continue\r\n\r\n";
         }
 
-        my $content = q{};
-        my $buffer;
-        binmode(STDIN);
-        while (read(STDIN,$buffer,$length)) {
-            $content .= $buffer;
+        #my $content = q{};
+        if(!$chunked) {
+            my $buffer;
+            binmode(STDIN);
+            while (read(STDIN,$buffer,$length)) {
+                $content .= $buffer;
+            }
         }
 
         $self->request(HTTP::Request->new(

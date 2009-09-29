@@ -16,6 +16,8 @@ http://rt.cpan.org/Public/Dist/Display.html?Name=SOAP-Lite
 THIS RELEASE
 -----------------------------------------------------------------------
 0.710.09
+   ! [2832939] chunked client requests are returned 411(Length Required) 
+   ! [2860559] serious utf8 bug
    ! #44568 Tracing unavailable when SOAP::Lite is used as a server 
    ! #44195 submitting patches / mention Nginx transport module in documentation
    ! [2777361] SOAP 1.2 Content-Type rejected
