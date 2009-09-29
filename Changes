@@ -16,6 +16,7 @@ http://rt.cpan.org/Public/Dist/Display.html?Name=SOAP-Lite
 THIS RELEASE
 -----------------------------------------------------------------------
 0.710.09
+   ! #49011: Fails to install under strawberry perl
    ! [2825166] In Constant DEFAULT_HTTP_CONTENT_TYPE
    ! [2832939] chunked client requests are returned 411(Length Required) 
    ! [2860559] serious utf8 bug
