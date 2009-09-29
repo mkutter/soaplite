@@ -19,7 +19,7 @@ package SOAP::Lite;
 use 5.005;
 use strict;
 use vars qw($VERSION);
-use version; $VERSION = qv('0.710.08');
+use version; $VERSION = qv('0.710.09');
 # ======================================================================
 
 package SOAP::XMLSchemaApacheSOAP::Deserializer;
@@ -2384,7 +2384,7 @@ package SOAP::Client;
 use vars qw($VERSION);
 use SOAP::Lite::Utils;
 
-$VERSION = '0.70';
+$VERSION = $SOAP::Lite::VERSION;
 sub BEGIN {
     __PACKAGE__->__mk_accessors(qw(endpoint code message
         is_success status options));
