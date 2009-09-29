@@ -310,11 +310,12 @@ EOBASE64
         </c-gensym\d+>
         }xms 
     );
-
-    # deserialize it and check that a similar object is created
+    
+	# deserialize it and check that a similar object is created
     my $deserializer = SOAP::Deserializer->new;
     
     my $obj = $deserializer->deserialize($xml)->root;
+
     ok(1, $obj->{"scalar"});
     my @arr= @{$obj->{"array"}};
     ok(2, $arr[0]);

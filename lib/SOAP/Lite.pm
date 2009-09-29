@@ -1068,7 +1068,6 @@ sub encode_object {
     my($self, $object, $name, $type, $attr) = @_;
 
     $attr ||= {};
-
     return $self->encode_scalar($object, $name, $type, $attr)
         unless ref $object;
 
@@ -1209,40 +1208,67 @@ sub encode_array {
 sub encode_literal_array {
     my($self, $array, $name, $type, $attr) = @_;
 
-    # If typing is disabled, just serialize each of the array items
-    # with no type information, each using the specified name,
-    # and do not crete a wrapper array tag.
-    if (!$self->autotype) {
-        $name ||= gen_name;
-        my @items = map {$self->encode_object($_, $name)} @$array;
-        return [ $name, {%$attr}, [@items], $self->gen_id($array) ];
+    if ($self->autotype) {
+        my $items = 'item';
+    
+        # TODO: add support for multidimensional, partially transmitted and sparse arrays
+        my @items = map {$self->encode_object($_, $items)} @$array;
+
+    
+        my $num = @items;
+        my($arraytype, %types) = '-';
+        for (@items) {
+           $arraytype = $_->[1]->{'xsi:type'} || '-';
+           $types{$arraytype}++
+        }
+        $arraytype = sprintf "%s\[$num]", keys %types > 1 || $arraytype eq '-'
+            ? SOAP::Utils::qualify(xsd => $self->xmlschemaclass->anyTypeValue)
+            : $arraytype;
+    
+        $type = SOAP::Utils::qualify($self->encprefix => 'Array')
+            if !defined $type;
+    
+        return [$name || SOAP::Utils::qualify($self->encprefix => 'Array'),
+            {
+                SOAP::Utils::qualify($self->encprefix => 'arrayType') => $arraytype,
+                'xsi:type' => $self->maptypetouri($type), %$attr
+            },
+            [ @items ],
+            $self->gen_id($array)
+        ];
     }
+    else {
+        #
+        # literal arrays are different - { array => [ 5,6 ] }
+        # results in <array>5</array><array>6</array>
+        # This means that if there's a literal inside the array (not a 
+        # reference), we have to encode it this way. If there's only 
+        # nested tags, encode as 
+        # <array><foo>1</foo><foo>2</foo></array>
+        #
+        
+        my $literal = undef;
+        my @items = map {
+            ref $_ 
+                ? $self->encode_object($_)
+                : do {
+                    $literal++;
+                    $_
+                }
+            
+        } @$array;
 
-    my $items = 'item';
-
-    # TODO: add support for multidimensional, partially transmitted and sparse arrays
-    my @items = map {$self->encode_object($_, $items)} @$array;
-    my $num = @items;
-    my($arraytype, %types) = '-';
-    for (@items) {
-       $arraytype = $_->[1]->{'xsi:type'} || '-';
-       $types{$arraytype}++
+        if ($literal) {
+            return map { [ $name , $attr , $_, $self->gen_id($array) ] } @items;
+        }
+        else {         
+            return [$name || SOAP::Utils::qualify($self->encprefix => 'Array'),
+                $attr,
+                [ @items ],
+                $self->gen_id($array)
+            ];            
+        }
     }
-    $arraytype = sprintf "%s\[$num]", keys %types > 1 || $arraytype eq '-'
-        ? SOAP::Utils::qualify(xsd => $self->xmlschemaclass->anyTypeValue)
-        : $arraytype;
-
-    $type = SOAP::Utils::qualify($self->encprefix => 'Array')
-        if !defined $type;
-
-    return [$name || SOAP::Utils::qualify($self->encprefix => 'Array'),
-        {
-            SOAP::Utils::qualify($self->encprefix => 'arrayType') => $arraytype,
-            'xsi:type' => $self->maptypetouri($type), %$attr
-        },
-        [ @items ],
-        $self->gen_id($array)
-    ];
 }
 
 sub encode_hash {
