@@ -77,7 +77,7 @@ $SOAP_VERSION = '1.1';
         NS_ENV                    => URI_SOAP12_ENV,
         NS_ENC                    => URI_SOAP12_ENC,
         DEFAULT_XML_SCHEMA        => URI_2001_SCHEMA_XSD,
-        DEFAULT_HTTP_CONTENT_TYPE => 'application/soap',
+        DEFAULT_HTTP_CONTENT_TYPE => 'application/soap+xml',
     },
 );
 
