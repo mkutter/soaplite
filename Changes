@@ -15,6 +15,8 @@ http://rt.cpan.org/Public/Dist/Display.html?Name=SOAP-Lite
 -----------------------------------------------------------------------
 THIS RELEASE
 -----------------------------------------------------------------------
+0.710.10
+   ! #49981: UDDI::Lite version not parsable by cpanplus (again)
 0.710.09
    ! #46444: use SOAP::Lite::Deserializer::XMLSchemaSOAP1_2 missing
    ! #37151: Strawberry perl 5.10 - Tests fail and then later hang

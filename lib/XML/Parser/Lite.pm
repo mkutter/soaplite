@@ -13,7 +13,7 @@ package XML::Parser::Lite;
 
 use strict;
 use vars qw($VERSION);
-use version; $VERSION = qv('0.710.09');
+use version; $VERSION = qv('0.710.10');
 
 sub new {
     my $class = shift;

@@ -12,14 +12,12 @@ package SOAP::Transport::TCP;
 
 use strict;
 use vars qw($VERSION);
-#$VERSION = sprintf("%d.%s", map {s/_//g; $_} q$Name$ =~ /-(\d+)_([\d_]+)/);
-$VERSION = $SOAP::Lite::VERSION;
+use SOAP::Lite; $VERSION = $SOAP::Lite::VERSION;
 
 use URI;
 use IO::Socket;
 use IO::Select;
 use IO::SessionData;
-use SOAP::Lite;
 
 # ======================================================================
 

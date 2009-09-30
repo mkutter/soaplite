@@ -14,7 +14,7 @@ use strict;
 use vars;
 
 use vars qw($VERSION $SUPPORTED_TYPES);
-use version; $VERSION = qv('0.710.09');
+use version; $VERSION = qv('0.710.10');
 $SUPPORTED_TYPES = { };
 
 sub BEGIN {

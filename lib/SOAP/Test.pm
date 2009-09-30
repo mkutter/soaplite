@@ -12,7 +12,7 @@ package SOAP::Test;
 
 use 5.004;
 use vars qw($VERSION $TIMEOUT);
-use version; $VERSION = qv('0.710.09');
+use version; $VERSION = qv('0.710.10');
 
 $TIMEOUT = 5;
 

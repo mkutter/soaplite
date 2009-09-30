@@ -12,9 +12,9 @@ package SOAP::Transport::HTTP;
 
 use strict;
 use vars qw($VERSION);
-$VERSION = $SOAP::Lite::VERSION;
+use SOAP::Lite; $VERSION = $SOAP::Lite::VERSION;
 
-use SOAP::Lite;
+
 use SOAP::Packager;
 
 # ======================================================================
