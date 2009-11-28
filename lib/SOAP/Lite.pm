@@ -16,7 +16,7 @@
 
 package SOAP::Lite;
 
-use 5.005;
+use 5.006; #weak references require perl 5.6
 use strict;
 use vars qw($VERSION);
 use version; $VERSION = qv('0.710.10');

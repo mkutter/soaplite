@@ -1,7 +1,7 @@
 # See lib/ExtUtils/MakeMaker.pm for details of how to influence
 # the contents of the Makefile that is written.
 
-require 5.005;
+use 5.006; #weak references require perl 5.6
 use strict;
 use ExtUtils::MakeMaker;
 use diagnostics;
