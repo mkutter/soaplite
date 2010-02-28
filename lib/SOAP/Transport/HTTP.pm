@@ -800,7 +800,12 @@ sub handler {
     # which is not what we want.
     # will emulate normal response, but with custom status code
     # which could also be 500.
-    $r->status( $self->response->code );
+    if ($self->{'MOD_PERL_VERSION'} < 2 ) {
+        $r->status( $self->response->code );
+    }
+    else {
+        $r->status_line($self->response->code);
+    }
 
     # Begin JT Justman patch
     if ( $self->{'MOD_PERL_VERSION'} > 1 ) {

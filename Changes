@@ -18,6 +18,8 @@ THIS RELEASE
 0.710.11
    ! [2946245] / #54106 Only last Cookie Set
    #50178: Win32 isuue with IO::SessionData and IO::SessionSet
+   #41527: SOAP::Lite 0.69 with Apache2 HTTP Server module and mod_perl 2 
+           returns 500 Internal 
 0.710.10
    ! #49981: UDDI::Lite version not parsable by cpanplus (again)
 0.710.09
