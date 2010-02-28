@@ -15,6 +15,8 @@ http://rt.cpan.org/Public/Dist/Display.html?Name=SOAP-Lite
 -----------------------------------------------------------------------
 THIS RELEASE
 -----------------------------------------------------------------------
+0.710.11
+   ! [2946245] / #54106 Only last Cookie Set
 0.710.10
    ! #49981: UDDI::Lite version not parsable by cpanplus (again)
 0.710.09

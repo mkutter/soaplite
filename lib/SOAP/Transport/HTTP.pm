@@ -804,7 +804,7 @@ sub handler {
 
     # Begin JT Justman patch
     if ( $self->{'MOD_PERL_VERSION'} > 1 ) {
-        $self->response->headers->scan( sub { $r->headers_out->set(@_) } );
+        $self->response->headers->scan(sub { $r->headers_out->add(@_) });
         $r->content_type( join '; ', $self->response->content_type );
     }
     else {
