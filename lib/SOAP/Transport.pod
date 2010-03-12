@@ -253,11 +253,17 @@ This is true for all initialization parameters and methods of C<LWP::UserAgent>.
 
 =item http_request
 
-This method gives you acess to the HTTP Request object that will be, or was transmitted to a SOAP Server. It returns a L<HTTP::Request> object.
+This method gives you acess to a prototype of the HTTP Request object that 
+will be transmitted to a SOAP::Server. The actual request used is a copy of
+that object.
+
+Do not use this method for anything else than setting prototypic behaviour for
+the client object.
 
 =item http_response
 
-This method gives you acess to the HTTP Response object that will be, or was transmitted to a SOAP Server. It returns a L<HTTP::Response> object.
+This method gives you acess to the HTTP Response object that will be, or was 
+transmitted to a SOAP Server. It returns a L<HTTP::Response> object.
 
 =back
 
@@ -265,7 +271,10 @@ This method gives you acess to the HTTP Response object that will be, or was tra
 
 Inherits from: L<SOAP::Server>. 
 
-This is the most basic of the HTTP server implementations. It provides the basic methods, new and handle. The handle method's behavior is defined here, along with other methods specific to this class. The role of this class is primarily to act as a superclass for the other HTTP-based server classes. 
+This is the most basic of the HTTP server implementations. It provides the
+ basic methods, new and handle. The handle method's behavior is defined here, 
+ along with other methods specific to this class. The role of this class is 
+ primarily to act as a superclass for the other HTTP-based server classes. 
 
 =over
 
@@ -273,7 +282,9 @@ This is the most basic of the HTTP server implementations. It provides the basic
 
     $server->handle;
 
-Expects the request method to have been used to associate a HTTP::Request object with the server object prior to being called. This method retrieves that object reference to get at the request being handled.
+Expects the request method to have been used to associate a HTTP::Request 
+object with the server object prior to being called. This method retrieves 
+that object reference to get at the request being handled.
 
 =item request(I<optional value>)
 
