@@ -12,6 +12,7 @@
 package XML::Parser::Lite;
 
 use strict;
+use warnings;
 use vars qw($VERSION);
 use version; $VERSION = qv('0.710.10');
 
@@ -32,7 +33,8 @@ sub setHandlers {
     my $self = shift;
 
     # allow symbolic refs, avoid "subroutine redefined" warnings
-    no strict 'refs'; local $^W;
+    no strict 'refs';
+	no warnings qw(redefine);
     # clear all handlers if called without parameters
     if (not @_) {
         for (qw(Start End Char Final Init Comment Doctype XMLDecl)) {
@@ -182,7 +184,8 @@ sub _char {
 }
 
 sub _end {
-    pop(@stack) eq $_[0] or die "mismatched tag '$_[0]'\n";
+    no warnings qw(uninitialized);
+	pop(@stack) eq $_[0] or die "mismatched tag '$_[0]'\n";
     End(__PACKAGE__, $_[0]);
 }
 
