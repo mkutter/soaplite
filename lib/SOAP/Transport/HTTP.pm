@@ -527,7 +527,12 @@ sub handle {
     my $self = shift->new;
 
     my $length = $ENV{'CONTENT_LENGTH'} || 0;
-    my $chunked = ( $ENV{'HTTP_TRANSFER_ENCODING'} =~ /^chunked.*$/ ) || 0;
+
+    # if the HTTP_TRANSFER_ENCODING env is defined, set $chunked true
+    # else to false
+    my $chunked = (defined $ENV{'HTTP_TRANSFER_ENCODING'} 
+        && $ENV{'HTTP_TRANSFER_ENCODING'} =~ /^chunked.*$/) || 0;
+
 
     my $content = q{};
 
