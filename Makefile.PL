@@ -19,7 +19,8 @@ my @PREREQS = (
           "Scalar::Util"    => 0,
           "Task::Weaken"    => 0, #to be sure than weaken works (Scalar::Util has XS part)
           "version"         => 0,
-          "constant"        => 1.14, #for multiple constants
+          "constant"        => 0, #don't force people to upgrade
+          "perl"            => 5.006
         },
         2
     ],
@@ -180,12 +181,14 @@ ExtUtils::MakeMaker::WriteMakefile(
     'EXE_FILES'     => ['bin/SOAPsh.pl', 'bin/XMLRPCsh.pl', 'bin/stubmaker.pl'],
     test            => {TESTS => $tests},
     ($ExtUtils::MakeMaker::VERSION ge '6.48'? 
-     (MIN_PERL_VERSION => 5.005,
+     (MIN_PERL_VERSION => 5.006,
       META_MERGE => {
           resources=> {
               repository => 'https://soaplite.svn.sourceforge.net/svnroot/soaplite/branches/0.71',
           },
           keywords => ['SOAP','SOAP client','SOAP server'],
+          bugtracker => 'https://sourceforge.net/tracker/?group_id=66000&atid=513017',
+          
       },
      ) : ()),
 );
