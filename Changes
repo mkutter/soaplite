@@ -16,6 +16,7 @@ http://rt.cpan.org/Public/Dist/Display.html?Name=SOAP-Lite
 THIS RELEASE
 -----------------------------------------------------------------------
 0.710.11
+   ! #45997: Inconsistency in SOAP::Serializer documentation
    ! #55618: HTTP_TRANSFER_ENCODING can be undefined in SOAP/Transpo
    ! [2946245] / #54106 Only last Cookie Set
    ! #50178: Win32 isuue with IO::SessionData and IO::SessionSet
