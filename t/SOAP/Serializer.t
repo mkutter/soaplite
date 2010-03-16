@@ -8,15 +8,15 @@ my $serializer = SOAP::Serializer->new();
 
 is $serializer->find_prefix('http://schemas.xmlsoap.org/soap/envelope/'), 'soap';
 
-ok my $tag = $serializer->tag('fooxml', {}, undef), 'serialize <fooxml/>';
-ok $tag = $serializer->tag('_xml', {}, undef), 'serialize <_xml/>';
+ok my $tag = $serializer->tag('fooxml', {}), 'serialize <fooxml/>';
+ok $tag = $serializer->tag('_xml', {}), 'serialize <_xml/>';
 eval {
-    $tag = $serializer->tag('xml:lang', {}, undef);;
+    $tag = $serializer->tag('xml:lang', {});
 };
 like $@, qr{^Element \s 'xml:lang' \s can't \s be \s allowed}x, 'error on <xml:lang/>';
 undef $@;
 eval {
-    $tag = $serializer->tag('xmlfoo', {}, undef);
+    $tag = $serializer->tag('xmlfoo', {});
 };
 like $@, qr{^Element \s 'xmlfoo' \s can't \s be \s allowed}x, 'error on <xmlfoo/>';
 
