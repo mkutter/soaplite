@@ -96,8 +96,10 @@ sub endpoint {
     my $endpoint = shift;
 
     # nothing to do if new endpoint is the same as the current one
-    return $self if $self->SUPER::endpoint eq $endpoint;
-
+    {
+	    no warnings qw(uninitialized);
+	    return $self if $self->SUPER::endpoint eq $endpoint;
+    }
     my $uri = URI->new($endpoint);
     my %parameters = (%$self, map {URI::Escape::uri_unescape($_)} map {split/=/,$_,2} split /[&;]/, $uri->query || '');
 
