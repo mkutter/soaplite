@@ -11,8 +11,8 @@
 package SOAP::Transport::TCP;
 
 use strict;
-use vars qw($VERSION);
-use SOAP::Lite; $VERSION = $SOAP::Lite::VERSION;
+
+our $VERSION = 0.711;
 
 use URI;
 use IO::Socket;

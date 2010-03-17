@@ -11,8 +11,9 @@
 package XMLRPC::Transport::POP3;
 
 use strict;
-use vars qw($VERSION);
-use XMLRPC::Lite; $VERSION = $XMLRPC::Lite::VERSION;
+
+our $VERSION = 0.711;
+use XMLRPC::Lite;
 
 use SOAP::Transport::POP3;
 

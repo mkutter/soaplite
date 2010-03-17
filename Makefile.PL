@@ -18,9 +18,7 @@ my @PREREQS = (
           "URI"             => 0,
           "Scalar::Util"    => 0,
           "Task::Weaken"    => 0, #to be sure than weaken works (Scalar::Util has XS part)
-          "version"         => 0,
           "constant"        => 0, #don't force people to upgrade
-          "perl"            => 5.006
         },
         2
     ],

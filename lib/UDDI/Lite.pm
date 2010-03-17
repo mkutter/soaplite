@@ -12,8 +12,8 @@ package UDDI::Lite;
 
 use 5.004;
 use strict;
-use vars qw($VERSION);
-use SOAP::Lite; $VERSION = $SOAP::Lite::VERSION;
+
+our $VERSION = 0.711;
 
 # ======================================================================
 

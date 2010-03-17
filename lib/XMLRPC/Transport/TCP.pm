@@ -11,9 +11,9 @@
 package XMLRPC::Transport::TCP;
 
 use strict;
-use vars qw($VERSION);
 
-use XMLRPC::Lite; $VERSION = $XMLPRC::Lite::VERSION;
+our $VERSION = 0.711;
+use XMLRPC::Lite;
 
 
 use SOAP::Transport::TCP;

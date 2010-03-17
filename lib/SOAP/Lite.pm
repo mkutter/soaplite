@@ -18,8 +18,7 @@ package SOAP::Lite;
 
 use 5.006; #weak references require perl 5.6
 use strict;
-use vars qw($VERSION);
-use version; $VERSION = qv('0.710.10');
+our $VERSION = 0.711;
 # ======================================================================
 
 package SOAP::XMLSchemaApacheSOAP::Deserializer;
@@ -2381,7 +2380,7 @@ sub typecast { } # typecast is called for both objects AND scalar types
 
 package SOAP::Client;
 
-use vars qw($VERSION);
+
 use SOAP::Lite::Utils;
 
 $VERSION = $SOAP::Lite::VERSION;
