@@ -34,7 +34,7 @@ sub setHandlers {
 
     # allow symbolic refs, avoid "subroutine redefined" warnings
     no strict 'refs';
-	no warnings qw(redefine);
+    no warnings qw(redefine);
     # clear all handlers if called without parameters
     if (not @_) {
         for (qw(Start End Char Final Init Comment Doctype XMLDecl)) {
@@ -185,7 +185,7 @@ sub _char {
 
 sub _end {
     no warnings qw(uninitialized);
-	pop(@stack) eq $_[0] or die "mismatched tag '$_[0]'\n";
+    pop(@stack) eq $_[0] or die "mismatched tag '$_[0]'\n";
     End(__PACKAGE__, $_[0]);
 }
 

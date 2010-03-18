@@ -243,7 +243,7 @@ sub send_receive {
             elsif ( !$SOAP::Constants::DO_NOT_USE_CHARSET && $encoding ) {
                 my $tmpType = $http_request->headers->header('Content-type');
 
-         #	$http_request->content_type($tmpType.'; charset=' . lc($encoding));
+                # $http_request->content_type($tmpType.'; charset=' . lc($encoding));
                 my $addition = '; charset=' . lc($encoding);
                 $http_request->content_type( $tmpType . $addition )
                   if ( $tmpType !~ /$addition/ );
@@ -530,7 +530,7 @@ sub handle {
 
     # if the HTTP_TRANSFER_ENCODING env is defined, set $chunked true
     # else to false
-    my $chunked = (defined $ENV{'HTTP_TRANSFER_ENCODING'} 
+    my $chunked = (defined $ENV{'HTTP_TRANSFER_ENCODING'}
         && $ENV{'HTTP_TRANSFER_ENCODING'} =~ /^chunked.*$/) || 0;
 
 

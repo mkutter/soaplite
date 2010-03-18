@@ -17,7 +17,11 @@ SOAP::Client - exists purely as a superclass for client classes declared by the 
 
 =head1 DESCRIPTION
 
-The SOAP::Client class exists purely as a superclass for client classes declared by the various SOAP::Lite transport modules. The methods it provides are all simple accessors; they return the current value when called with no arguments or set the attribute value and return the object reference when called with an argument. These attributes include: 
+The SOAP::Client class exists purely as a superclass for client classes
+declared by the various SOAP::Lite transport modules. The methods it
+provides are all simple accessors; they return the current value when
+called with no arguments or set the attribute value and return the object
+reference when called with an argument. These attributes include:
 
 =head1 METHODS
 
