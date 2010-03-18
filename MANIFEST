@@ -41,11 +41,7 @@ examples/getdom.pl
 examples/google.pl
 examples/inline.daemon
 examples/iterator.pl
-examples/JABBER/jabclient.pl
-examples/JABBER/jabserver.pl
 examples/joke.pl
-examples/MQ/mqclient.pl
-examples/MQ/mqserver.pl
 examples/My/Chat.pm
 examples/My/Examples.pm
 examples/My/Parameters.pm
@@ -130,11 +126,9 @@ lib/SOAP/Transport.pod
 lib/SOAP/Transport/FTP.pm
 lib/SOAP/Transport/HTTP.pm
 lib/SOAP/Transport/IO.pm
-lib/SOAP/Transport/JABBER.pm
 lib/SOAP/Transport/LOCAL.pm
 lib/SOAP/Transport/LOOPBACK.pm
 lib/SOAP/Transport/MAILTO.pm
-lib/SOAP/Transport/MQ.pm
 lib/SOAP/Transport/POP3.pm
 lib/SOAP/Transport/TCP.pm
 lib/SOAP/Utils.pod
@@ -200,7 +194,6 @@ t/SOAP/Serializer.t
 t/SOAP/Transport/HTTP/CGI.t
 t/SOAP/Transport/HTTP/CGI/test_server.pl
 t/SOAP/Schema/WSDL.t
-t/SOAP/Transport/FTP.t
 t/SOAP/Transport/HTTP.t
 t/SOAP/Transport/IO.t
 t/SOAP/Transport/IO.xml

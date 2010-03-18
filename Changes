@@ -15,7 +15,9 @@ http://rt.cpan.org/Public/Dist/Display.html?Name=SOAP-Lite
 -----------------------------------------------------------------------
 THIS RELEASE
 -----------------------------------------------------------------------
-0.710.11
+0.711
+   SOAP::Transport::JABBER, SOAP::Transport::MQ and SOAP::Tranport::FTP
+   are now in their own distributions.
    ! [2790747] Bugtracker specification in META.yml missing
    ! #45997: Inconsistency in SOAP::Serializer documentation
    ! #55618: HTTP_TRANSFER_ENCODING can be undefined in SOAP/Transpo

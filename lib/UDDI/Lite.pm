@@ -9,8 +9,7 @@
 # ======================================================================
 
 package UDDI::Lite;
-
-use 5.004;
+use 5.006;
 use strict;
 
 our $VERSION = 0.711;
@@ -18,6 +17,7 @@ our $VERSION = 0.711;
 # ======================================================================
 
 package UDDI::Constants;
+our $VERSION = 0.711;
 
 BEGIN
 {
@@ -706,7 +706,7 @@ BEGIN
 # ======================================================================
 
 package UDDI::SOM;
-
+our $VERSION = 0.711;
 use vars qw(@ISA);
 @ISA = qw(SOAP::SOM);
 
@@ -721,6 +721,8 @@ sub result
 # ======================================================================
 
 package UDDI::Data;
+our $VERSION = 0.711;
+
 
 use Carp ();
 
@@ -864,6 +866,7 @@ sub AUTOLOAD
 # ======================================================================
 
 package UDDI::Serializer;
+our $VERSION = 0.711;
 
 use vars qw(@ISA);
 @ISA = qw(SOAP::Serializer);
@@ -921,6 +924,7 @@ sub encode_array
 # ======================================================================
 
 package UDDI::Deserializer;
+our $VERSION = 0.711;
 
 use vars qw(@ISA);
 @ISA = qw(SOAP::Deserializer);
@@ -951,6 +955,7 @@ sub deserialize
 # ======================================================================
 
 package UDDI::Lite;
+our $VERSION = 0.711;
 
 use vars qw(@ISA $AUTOLOAD %EXPORT_TAGS);
 use Exporter;
