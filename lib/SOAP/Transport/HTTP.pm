@@ -197,10 +197,15 @@ sub send_receive {
           # from string (doing pack with 'C0A*' modifier) if length and
           # bytelength are not the same
             my $bytelength = SOAP::Utils::bytelength($envelope);
-            $envelope = pack( 'C0A*', $envelope )
-              if !$SOAP::Constants::DO_NOT_USE_LWP_LENGTH_HACK
-                  && length($envelope) != $bytelength;
-
+			if ($] < 5.008) {
+				$envelope = pack( 'C0A*', $envelope );
+			}
+			else {
+				require Encode;
+				$envelope = Encode::encode('UTF-8', $envelope); 
+			}
+            #  if !$SOAP::Constants::DO_NOT_USE_LWP_LENGTH_HACK
+            #      && length($envelope) != $bytelength;
             $http_request->content($envelope);
             $http_request->protocol('HTTP/1.1');
 
