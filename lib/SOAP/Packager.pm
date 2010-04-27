@@ -13,9 +13,8 @@ package SOAP::Packager;
 use strict;
 use vars;
 
-use vars qw($VERSION $SUPPORTED_TYPES);
-use version; $VERSION = qv('0.710.10');
-$SUPPORTED_TYPES = { };
+our $VERSION = 0.712;
+our $SUPPORTED_TYPES = { };
 
 sub BEGIN {
   no strict 'refs';
