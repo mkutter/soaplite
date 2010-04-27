@@ -533,7 +533,7 @@ sub handle {
 
     my $length = $ENV{'CONTENT_LENGTH'} || 0;
 
-    # if the HTTP_TRANSFER_ENCODING env is defined, set $chunked true
+    # if the HTTP_TRANSFER_ENCODING env is defined, set $chunked if it's chunked*
     # else to false
     my $chunked = (defined $ENV{'HTTP_TRANSFER_ENCODING'}
         && $ENV{'HTTP_TRANSFER_ENCODING'} =~ /^chunked.*$/) || 0;
