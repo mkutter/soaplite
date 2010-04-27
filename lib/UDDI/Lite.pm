@@ -11,9 +11,9 @@
 package UDDI::Lite;
 use 5.006;
 use strict;
-
+{
 our $VERSION = 0.711;
-
+}
 # ======================================================================
 
 package UDDI::Constants;

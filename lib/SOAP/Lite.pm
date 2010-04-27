@@ -430,8 +430,10 @@ sub clone {
 package SOAP::Transport;
 
 use vars qw($AUTOLOAD @ISA);
-
 @ISA = qw(SOAP::Cloneable);
+
+use Class::Inspector;
+
 
 sub DESTROY { SOAP::Trace::objects('()') }
 
@@ -461,7 +463,7 @@ sub proxy {
     (my $protocol_class = "${class}::$protocol") =~ s/-/_/g;
 
     no strict 'refs';
-    unless (defined %{"$protocol_class\::Client::"}
+    unless (Class::Inspector->loaded("$protocol_class\::Client")
         && UNIVERSAL::can("$protocol_class\::Client" => 'new')
     ) {
         eval "require $protocol_class";
