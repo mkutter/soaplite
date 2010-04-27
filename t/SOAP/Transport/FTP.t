@@ -8,9 +8,10 @@ my $transport;
 ok $transport = SOAP::Transport::FTP::Client->new(), 'new()';
 
 is $transport, $transport->new(), '$transport->new() returns $transport';
-
-$transport->send_receive();
-
+{
+    no warnings qw(uninitialized);
+    $transport->send_receive();
+}
 ok ! $transport->is_success(), 'is_success() is false';
 like $transport->status(), qr{ Can't \s connect }x;
 like $transport->message(), qr{ Can't \s connect }x;
