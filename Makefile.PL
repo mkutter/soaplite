@@ -19,6 +19,7 @@ my @PREREQS = (
           "Scalar::Util"    => 0,
           "Task::Weaken"    => 0, #to be sure than weaken works (Scalar::Util has XS part)
           "constant"        => 0, #don't force people to upgrade
+          "Class::Inspector" => 0,
         },
         2
     ],

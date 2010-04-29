@@ -1978,6 +1978,7 @@ package SOAP::Deserializer;
 
 use vars qw(@ISA);
 use SOAP::Lite::Utils;
+use Class::Inspector;
 
 @ISA = qw(SOAP::Cloneable);
 
@@ -2202,7 +2203,7 @@ sub decode_value {
 
     {
         no strict qw(refs);
-        if (! defined(%{"${schemaclass}::"}) ) {
+        if (! Class::Inspector->loaded($schemaclass) ) {
             eval "require $schemaclass" or die $@ if not ref $schemaclass;
         }
     }
