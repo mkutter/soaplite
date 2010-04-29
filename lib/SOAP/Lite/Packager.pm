@@ -376,7 +376,7 @@ Instantiates a new instance of a SOAP::Lite::Packager.
 =item parts
 
 Contains an array of parts. The contents of this array and their types are completely
-dependant upon the Packager being used. For example, when using MIME, the content
+dependent upon the Packager being used. For example, when using MIME, the content
 of this array is MIME::Entity's.
 
 =item push_part

@@ -17,9 +17,9 @@ THIS RELEASE
 -----------------------------------------------------------------------
 0.712
     ! #52015 defined(%hash) deprecated in Perl 5.11
-    ! #39546, use of version.pm
+    ! #39546 use of version.pm
     ! #52637 error sending a request in perl 5.10.0 containing utf-8 data using the string data type
-    ! 
+    ! #55962 Spelling errors 
 0.711
    SOAP::Transport::JABBER, SOAP::Transport::MQ and SOAP::Tranport::FTP
    are now in their own distributions.

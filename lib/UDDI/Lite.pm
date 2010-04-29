@@ -1199,7 +1199,7 @@ Builded on top of SOAP::Lite module, hence inherited syntax and features
 
 =item *
 
-Supports easy-to-use interface with convinient access to (sub)elements
+Supports easy-to-use interface with convenient access to (sub)elements
 and attributes
 
 =item *
@@ -1318,7 +1318,7 @@ will be serialized into:
     </name>
   </find_business>
 
-For standard elements more convinient syntax is available:
+For standard elements more convenient syntax is available:
 
   find_business(
     findQualifiers(findQualifier('sortByNameAsc',

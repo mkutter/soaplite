@@ -123,7 +123,6 @@ lib/SOAP/SOM.pod
 lib/SOAP/Test.pm
 lib/SOAP/Trace.pod
 lib/SOAP/Transport.pod
-lib/SOAP/Transport/FTP.pm
 lib/SOAP/Transport/HTTP.pm
 lib/SOAP/Transport/IO.pm
 lib/SOAP/Transport/LOCAL.pm

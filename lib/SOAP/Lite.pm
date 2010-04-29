@@ -4333,7 +4333,7 @@ print the following message on success:
 
 There are three common (and one less common) variants of SOAP messages.
 
-These adress the message style (positional parameters vs. specified message
+These address the message style (positional parameters vs. specified message
 documents) and encoding (as-is vs. typed).
 
 The different message styles are:
@@ -5567,7 +5567,7 @@ of this software.
 
 =head1 HACKING
 
-SOAP::Lite's developement takes place on sourceforge.net.
+SOAP::Lite's development takes place on sourceforge.net.
 
 There's a subversion repository set up at
 
