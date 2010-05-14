@@ -16,7 +16,7 @@ use XMLRPC::Transport::HTTP;
 
 @ISA = qw(XMLRPC::Transport::HTTP::Apache);
 
-our $VERSION = 0.711;
+our $VERSION = 0.712;
 
 my $server = __PACKAGE__->new;
 

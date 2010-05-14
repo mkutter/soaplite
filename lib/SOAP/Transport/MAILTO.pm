@@ -13,7 +13,7 @@ package SOAP::Transport::MAILTO;
 use strict;
 
 
-our $VERSION = 0.711;
+our $VERSION = 0.712;
 
 use MIME::Lite; 
 use URI;

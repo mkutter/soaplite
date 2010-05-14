@@ -198,7 +198,6 @@ t/SOAP/Transport/IO.t
 t/SOAP/Transport/IO.xml
 t/SOAP/Transport/LOCAL.t
 t/SOAP/Transport/MAILTO.t
-t/SOAP/Transport/MQ.t
 t/SOAP/Transport/POP3.t
 t/TEST.pl
 t/XMLRPC/Lite.t
