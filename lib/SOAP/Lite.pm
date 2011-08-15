@@ -196,7 +196,7 @@ sub as_boolean {
     return [
         $name,
         {'xsi:type' => 'xsd:boolean', %$attr},
-        ( $value ne 'false' && $value ) ? 'true' : 'false'
+        ( $value && $value ne 'false' ) ? 'true' : 'false'
     ];
 }
 
