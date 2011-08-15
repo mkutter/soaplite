@@ -566,9 +566,16 @@ sub handle {
         if ( !$chunked ) {
             my $buffer;
             binmode(STDIN);
-            while ( sysread( STDIN, $buffer, $length ) ) {
-                $content .= $buffer;
-                last if ( length($content) >= $length );
+            if ( defined $ENV{'MOD_PERL'} ) {
+                while ( read( STDIN, $buffer, $length ) ) {
+                    $content .= $buffer;
+                    last if ( length($content) >= $length );
+                }
+            } else {
+                while ( sysread( STDIN, $buffer, $length ) ) {
+                    $content .= $buffer;
+                    last if ( length($content) >= $length );
+                }
             }
         }
 
