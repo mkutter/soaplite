@@ -575,7 +575,8 @@ sub new {
 sub name {
     my $self = UNIVERSAL::isa($_[0] => __PACKAGE__) ? shift->new : __PACKAGE__->new;
     if (@_) {
-        my ($name, $uri, $prefix) = shift;
+	    my $name = shift;
+        my ($uri, $prefix);		# predeclare, because can't declare in assign
         if ($name) {
             ($uri, $name) = SOAP::Utils::splitlongname($name);
             unless (defined $uri) {
