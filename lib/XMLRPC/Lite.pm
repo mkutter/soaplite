@@ -364,7 +364,7 @@ sub new {
         serializer => XMLRPC::Serializer->new,
         deserializer => XMLRPC::Deserializer->new,
         on_action => sub {return},
-        uri => 'http://unspecified/',
+        default_ns => 'http://unspecified/',
         @_
     );
 }
