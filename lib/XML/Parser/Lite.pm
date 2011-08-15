@@ -189,23 +189,23 @@ sub _end {
     no warnings qw(uninitialized);
     pop(@stack) eq $_[0] or die "mismatched tag '$_[0]'\n";
     my $r=End(__PACKAGE__, $_[0]);
-	return ref($r) eq 'ARRAY' ? $r : undef;
+    return ref($r) eq 'ARRAY' ? $r : undef;
 }
 
 sub comment {
     my $r=Comment(__PACKAGE__, $_[0]);
-	return ref($r) eq 'ARRAY' ? $r : undef;
+    return ref($r) eq 'ARRAY' ? $r : undef;
 }
 
 sub end {
-     pop(@stack) eq $_[0] or die "mismatched tag '$_[0]'\n";
-     my $r=End(__PACKAGE__, $_[0]);
-	 return ref($r) eq 'ARRAY' ? $r : undef;
- }
+    pop(@stack) eq $_[0] or die "mismatched tag '$_[0]'\n";
+    my $r=End(__PACKAGE__, $_[0]);
+    return ref($r) eq 'ARRAY' ? $r : undef;
+}
 
 sub _doctype {
     my $r=Doctype(__PACKAGE__, $_[0]);
-	return ref($r) eq 'ARRAY' ? $r : undef;
+    return ref($r) eq 'ARRAY' ? $r : undef;
 }
 
 sub _xmldecl {

@@ -199,7 +199,7 @@ sub process_form_data {
     my $name = $part->head->mime_attr('content-disposition.name');
     $name eq 'payload' ?
       $env = $part->bodyhandle->as_string
-	: $self->push_part($part);
+      : $self->push_part($part);
   }
   return $env;
 }
@@ -244,7 +244,7 @@ sub process_related {
     # alternative in the following MIME Header attributes
     my $plocation = $part->head->get('content-location') ||
       $part->head->mime_attr('Content-Disposition.filename') ||
-	$part->head->mime_attr('Content-Type.name');
+      $part->head->mime_attr('Content-Type.name');
     if ($start && $pid eq $start) {
       $env = $part->bodyhandle->as_string;
     } else {
