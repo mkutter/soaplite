@@ -304,7 +304,7 @@ sub package {
    my $soapversion = defined($context) ? $context->soapversion : '1.1';
    $top->attach('MIMEType' => $soapversion == 1.1 ?
                   "http://schemas.xmlsoap.org/soap/envelope/" : "application/soap+xml",
-                'Data'     => $envelope );
+                'Data'     => \$envelope );
    $message->add_payload($top);
    # consume the attachments that come in as input by 'shift'ing
    no strict 'refs';
