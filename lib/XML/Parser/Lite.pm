@@ -128,6 +128,7 @@ my $REGEXP = _regexp('??');
 sub _parse_re {
     use re "eval";
     undef $^R;
+    no strict 'refs';
     1 while $_[0] =~ m{$REGEXP}go
 };
 
