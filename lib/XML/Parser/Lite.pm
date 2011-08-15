@@ -167,7 +167,8 @@ sub _final {
 sub _start {
     die "multiple roots, wrong element '$_[0]'\n" if $level++ && !@stack;
     push(@stack, $_[0]);
-    Start(__PACKAGE__, @_);
+    my $r=Start(__PACKAGE__, @_);
+    return ref($r) eq 'ARRAY' ? $r : undef;
 }
 
 sub _char {
@@ -186,20 +187,24 @@ sub _char {
 sub _end {
     no warnings qw(uninitialized);
     pop(@stack) eq $_[0] or die "mismatched tag '$_[0]'\n";
-    End(__PACKAGE__, $_[0]);
+    my $r=End(__PACKAGE__, $_[0]);
+	return ref($r) eq 'ARRAY' ? $r : undef;
 }
 
 sub comment {
-    Comment(__PACKAGE__, $_[0]);
+    my $r=Comment(__PACKAGE__, $_[0]);
+	return ref($r) eq 'ARRAY' ? $r : undef;
 }
 
 sub end {
      pop(@stack) eq $_[0] or die "mismatched tag '$_[0]'\n";
-     End(__PACKAGE__, $_[0]);
+     my $r=End(__PACKAGE__, $_[0]);
+	 return ref($r) eq 'ARRAY' ? $r : undef;
  }
 
 sub _doctype {
-    Doctype(__PACKAGE__, $_[0]);
+    my $r=Doctype(__PACKAGE__, $_[0]);
+	return ref($r) eq 'ARRAY' ? $r : undef;
 }
 
 sub _xmldecl {
