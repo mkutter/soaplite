@@ -18,7 +18,7 @@ package SOAP::Lite;
 
 use 5.006; #weak references require perl 5.6
 use strict;
-our $VERSION = 0.712;
+our $VERSION = 0.713;
 # ======================================================================
 
 package SOAP::XMLSchemaApacheSOAP::Deserializer;

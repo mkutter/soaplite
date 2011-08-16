@@ -15,6 +15,18 @@ http://rt.cpan.org/Public/Dist/Display.html?Name=SOAP-Lite
 -----------------------------------------------------------------------
 THIS RELEASE
 -----------------------------------------------------------------------
+0.713
+    ! #52637 error sending a request in perl 5.10.0 containing utf-8 data using the string data type
+	! #48775 Small bug in SOAP::Packager
+	! #51178 Emailing: SOAP-Lite-0.710.10.patch
+	! #55962 Spelling errors
+	! #52015 defined(%hash) deprecated in Perl 5.11
+	! #63693 Uninitalized value
+	! #65655 Assignment of shift to list
+	! #58538 regression from 0.710.08 soap:Client,Application failed during request deserialization
+	! #64250 Bleadperl v5.13.7-297-g558b442 breaks SOAP::Lite 0.712
+	! #68088 XML::Parser::Lite fails tests under perl 5.14 RC1
+	! #69825 Bug in SOAP/Lite/Deserializer/XMLSchemaSOAP1_2.pm
 0.712
     ! #57409 SOAP::Lite installation problem
     ! #52015 defined(%hash) deprecated in Perl 5.11

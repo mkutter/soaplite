@@ -12,7 +12,7 @@ package XMLRPC::Transport::POP3;
 
 use strict;
 
-our $VERSION = 0.712;
+our $VERSION = 0.713;
 use XMLRPC::Lite;
 
 use SOAP::Transport::POP3;
