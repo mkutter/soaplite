@@ -18,7 +18,7 @@ package SOAP::Lite;
 
 use 5.006; #weak references require perl 5.6
 use strict;
-our $VERSION = 0.713;
+our $VERSION = 0.714;
 # ======================================================================
 
 package SOAP::XMLSchemaApacheSOAP::Deserializer;
@@ -1033,8 +1033,14 @@ sub is_href {
 }
 
 sub multiref_anchor {
-    my $seen = shift->seen->{my $id = shift || return undef};
-    return $seen->{multiref} ? "ref-$id" : undef;
+    my ($self, $id) = @_;
+    no warnings qw(uninitialized);
+    if ($self->{ _seen }->{ $id }->{multiref}) {
+        return "ref-$id"
+    }
+    else {
+        return undef;
+    }
 }
 
 sub encode_multirefs {
@@ -1445,18 +1451,28 @@ sub xmlize {
     $attrs ||= {};
 
     local $self->{_level} = $self->{_level} + 1;
+
     return $self->tag($name, $attrs)
         unless defined $values;
+
     return $self->tag($name, $attrs, $values)
         unless UNIVERSAL::isa($values => 'ARRAY');
+
     return $self->tag($name, {%$attrs, href => '#'.$self->multiref_anchor($id)})
         if $self->is_href($id, delete($attrs->{_id}));
-    return $self->tag($name,
-        {
-            %$attrs, id => $self->multiref_anchor($id)
-        },
-        map {$self->xmlize($_)} @$values
-    );
+
+    # we have seen this element as a reference
+    if (defined $id && $self->{ _seen }->{ $id }->{ multiref}) {
+        return $self->tag($name,
+            {
+                %$attrs, id => $self->multiref_anchor($id)
+            },
+            map {$self->xmlize($_)} @$values
+        );
+    }
+    else {
+        return $self->tag($name, $attrs, map {$self->xmlize($_)} @$values);
+    }
 }
 
 sub uriformethod {

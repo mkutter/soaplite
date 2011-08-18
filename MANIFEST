@@ -129,7 +129,6 @@ lib/SOAP/Transport/LOCAL.pm
 lib/SOAP/Transport/LOOPBACK.pm
 lib/SOAP/Transport/MAILTO.pm
 lib/SOAP/Transport/POP3.pm
-lib/SOAP/Transport/TCP.pm
 lib/SOAP/Utils.pod
 lib/UDDI/Lite.pm
 lib/XML/Parser/Lite.pm

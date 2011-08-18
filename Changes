@@ -15,6 +15,9 @@ http://rt.cpan.org/Public/Dist/Display.html?Name=SOAP-Lite
 -----------------------------------------------------------------------
 THIS RELEASE
 -----------------------------------------------------------------------
+0.714
+    Moved SOAP::Transport::TCP into SOAP-Transport-TPC distribution
+    ! #70329 - not generating attributes properly (deleting id attribute)
 0.713
     ! #52637 error sending a request in perl 5.10.0 containing utf-8 data using the string data type
 	! #48775 Small bug in SOAP::Packager

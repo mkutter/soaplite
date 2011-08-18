@@ -529,67 +529,6 @@ Methods for the Net::POP3 object are detected and properly routed, allowing oper
 
 This means that the endpoint string doesn't need to provide the user ID and password because the login method from the POP3 API may be used directly.
 
-=head2 SOAP::Transport::TCP
-
-The classes provided by this module implement direct TCP/IP communications methods for both clients and servers.
-
-The connections don't use HTTP or any other higher-level protocol. These classes are selected when the client or server object being created uses an endpoint URI that starts with tcp://. Both client and server classes support using Secure Socket Layer if it is available. If any of the parameters to a new method from either of the classes begins with SSL_ (such as SSL_server in place of Server), the class attempts to load the IO::Socket::SSL package and use it to create socket objects.
-
-Both of the following classes catch methods that are intended for the socket objects and pass them along, allowing calls such as $client->accept( ) without including the socket class in the inheritance tree.
-
-=head3 SOAP::Transport::TCP::Client
-
-Inherits from: L<SOAP::Client>.
-
-The TCP client class defines only two relevant methods beyond new and send_receive. These methods are:
-
-=over
-
-=item SSL(I<optional new boolean value>)
-
-    if ($client->SSL) # Execute only if in SSL mode
-
-Reflects the attribute that denotes whether the client object is using SSL sockets for communications.
-
-=item io_socket_class
-
-    ($client->io_socket_class)->new(%options);
-
-Returns the name of the class to use when creating socket objects for internal use in communications. As implemented, it returns one of IO::Socket::INET or IO::Socket::SSL, depending on the return value of the previous SSL method.
-
-=back
-
-If an application creates a subclass that inherits from this client class, either method is a likely target for overloading.
-
-The new method behaves identically to most other classes, except that it detects the presence of SSL-targeted values in the parameter list and sets the SSL method appropriately if they are present.
-
-The send_receive method creates a socket of the appropriate class and connects to the configured endpoint. It then sets the socket to nonblocking I/O, sends the message, shuts down the client end of the connection (preventing further writing), and reads the response back from the server. The socket object is discarded after the response and
-appropriate status codes are set on the client object.
-
-=head3 SOAP::Transport::TCP::Server
-
-Inherits from: L<SOAP::Server>.
-
-The server class also defines the same two additional methods as in the client class:
-
-=over
-
-=item SSL(I<optional new boolean value>)
-
-    if ($client->SSL) # Execute only if in SSL mode
-
-Reflects the attribute that denotes whether the client object is using SSL sockets for communications.
-
-=item io_socket_class
-
-    ($client->io_socket_class)->new(%options);
-
-Returns the name of the class to use when creating socket objects for internal use in communications. As implemented, it returns one of IO::Socket::INET or IO::Socket::SSL, depending on the return value of the previous SSL method. The new method also manages the automatic selection of SSL in the same fashion as the client class does.
-
-The handle method in this server implementation isn't designed to be called once with each new request. Rather, it is called with no arguments, at which time it enters into an infinite loop of waiting for a connection, reading the request, routing the request and sending back the serialized response. This continues until the process itself is interrupted by an untrapped signal or similar means.
-
-=back
-
 =head1 ACKNOWLEDGEMENTS
 
 Special thanks to O'Reilly publishing which has graciously allowed SOAP::Lite to republish and redistribute large excerpts from I<Programming Web Services with Perl>, mainly the SOAP::Lite reference found in Appendix B.

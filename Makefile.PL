@@ -34,6 +34,7 @@ my @PREREQS = (
     ["Client HTTPS support","SOAP::Transport::HTTPS::Client",{"Crypt::SSLeay" => 0},0],
     ["Client SMTP/sendmail support","SOAP::Transport::MAILTO::Client",{"MIME::Lite" => 0},1],
     ["Client FTP support","SOAP::Transport::FTP::Client",{"SOAP::Transport::FTP" => 0.712},0],
+    ["Client TCP support","SOAP::Transport::TCP::Client",{"SOAP::Transport::TCP" => 0.714},0],    
     ["Standalone HTTP server","SOAP::Transport::HTTP::Daemon",{"HTTP::Daemon" => 0},1],
     ["Apache/mod_perl server","SOAP::Transport::HTTP::Apache",{"Apache" => 0},0],
     ["FastCGI server","SOAP::Transport::HTTP::FCGI",{"FCGI" => 0},0],

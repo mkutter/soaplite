@@ -12,7 +12,7 @@ package XMLRPC::Transport::HTTP;
 
 use strict;
 
-our $VERSION = 0.713;
+our $VERSION = 0.714;
 
 use XMLRPC::Lite;
 
