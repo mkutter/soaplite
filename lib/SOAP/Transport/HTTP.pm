@@ -4,15 +4,13 @@
 # SOAP::Lite is free software; you can redistribute it
 # and/or modify it under the same terms as Perl itself.
 #
-# $Id$
-#
 # ======================================================================
 
 package SOAP::Transport::HTTP;
 
 use strict;
 
-our $VERSION = 0.715;
+our $VERSION = 1.17;
 
 use SOAP::Lite;
 use SOAP::Packager;
@@ -44,7 +42,8 @@ sub patch {
     }
     {
 
-        package LWP::Protocol;
+        package
+            LWP::Protocol;
         local $^W = 0;
         my $collect = \&collect;    # store original
         *collect = sub {
@@ -52,8 +51,9 @@ sub patch {
                 && $_[2]->header('Connection') eq 'Keep-Alive' ) {
                 my $data = $_[3]->();
                 my $next =
-                  SOAP::Utils::bytelength($$data) ==
-                  $_[2]->header('Content-Length')
+                  $_[2]->header('Content-Length') &&
+                    SOAP::Utils::bytelength($$data) ==
+                        $_[2]->header('Content-Length')
                   ? sub { my $str = ''; \$str; }
                   : $_[3];
                 my $done = 0;
@@ -81,8 +81,14 @@ sub http_response {
     return $self->{'_http_response'};
 }
 
+sub setDebugLogger {
+    my ($self,$logger) = @_;
+    $self->{debug_logger} = $logger;
+}
+
 sub new {
     my $class = shift;
+    #print "HTTP.pm DEBUG: in sub new\n";
 
     return $class if ref $class;    # skip if we're already object...
 
@@ -122,6 +128,8 @@ sub new {
     }
 
     SOAP::Trace::objects('()');
+
+    $self->setDebugLogger(\&SOAP::Trace::debug);
 
     return $self;
 }
@@ -260,9 +268,9 @@ sub send_receive {
                   if ( $tmpType !~ /$addition/ );
             }
 
-            $http_request->content_length($bytelength);
+            $http_request->content_length($bytelength) unless $compressed;
             SOAP::Trace::transport($http_request);
-            SOAP::Trace::debug( $http_request->as_string );
+            &{$self->{debug_logger}}($http_request->as_string);
 
             $self->SUPER::env_proxy if $ENV{'HTTP_proxy'};
 
@@ -270,7 +278,7 @@ sub send_receive {
             # TODO maybe eval this? what happens on connection close?
             $self->http_response( $self->SUPER::request($http_request) );
             SOAP::Trace::transport( $self->http_response );
-            SOAP::Trace::debug( $self->http_response->as_string );
+            &{$self->{debug_logger}}($self->http_response->as_string);
 
             # 100 OK, continue to read?
             if ( (
@@ -335,6 +343,11 @@ $COMPRESS = 'deflate';
 
 sub DESTROY { SOAP::Trace::objects('()') }
 
+sub setDebugLogger {
+    my ($self,$logger) = @_;
+    $self->{debug_logger} = $logger;
+}
+
 sub new {
     require LWP::UserAgent;
     my $self = shift;
@@ -353,6 +366,8 @@ sub new {
                   || $action ne join( '', @_ ) );
     };
     SOAP::Trace::objects('()');
+
+    $self->setDebugLogger(\&SOAP::Trace::debug);
 
     return $self;
 }
@@ -373,7 +388,7 @@ sub BEGIN {
 sub handle {
     my $self = shift->new;
 
-    SOAP::Trace::debug( $self->request->content );
+    &{$self->{debug_logger}}($self->request->content);
 
     if ( $self->request->method eq 'POST' ) {
         $self->action( $self->request->header('SOAPAction') || undef );
@@ -441,7 +456,7 @@ sub handle {
         : $content
     ) or return;
 
-    SOAP::Trace::debug($response);
+    &{$self->{debug_logger}}($response);
 
     $self->make_response( $SOAP::Constants::HTTP_ON_SUCCESS_CODE, $response );
 }
@@ -478,7 +493,7 @@ sub make_response {
 # this next line does not look like a good test to see if something is multipart
 # perhaps a /content-type:.*multipart\//gi is a better regex?
     my ($is_multipart) =
-      ( $response =~ /content-type:.* boundary="([^\"]*)"/im );
+      ( $response =~ /^content-type:.* boundary="([^\"]*)"/im );
 
     $self->response(
         HTTP::Response->new(
@@ -815,10 +830,17 @@ sub handler {
         return Apache::Constants::BAD_REQUEST();
     }
 
+    my %headers;
+    if ( $self->{'MOD_PERL_VERSION'} < 2 ) {
+        %headers = $r->headers_in; # Apache::Table structure
+    } else {
+        %headers = %{ $r->headers_in }; # Apache2::RequestRec structure
+    }
+
     $self->request(
         HTTP::Request->new(
             $r->method() => $r->uri,
-            HTTP::Headers->new( $r->headers_in ),
+            HTTP::Headers->new( %headers ),
             $content
         ) );
     $self->SUPER::handle;

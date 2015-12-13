@@ -1,6 +1,8 @@
 package SOAP::Transport::CGI_TEST::Client;
 
-use strict; use warnings;
+use strict;
+use warnings;
+
 use IPC::Open2;
 use File::Basename qw(dirname);
 
@@ -39,11 +41,17 @@ sub send_receive {
 }
 
 package main;
+
 no strict;
-use Test::More qw(no_plan);
+no warnings qw(redefine once uninitialized);
+
+use Test::More;
 use SOAP::Lite; # +trace;
+use utf8;
+use Encode;
+
 my $soap = SOAP::Lite->new()->proxy('http://');
-no warnings qw(redefine once);
+
 
 # make override send_receive in CGI client
 *SOAP::Transport::HTTP::Client::send_receive =
@@ -56,7 +64,7 @@ my $result = $som->result;
 if ($] >= 5.008) {
     ok utf8::is_utf8($result), 'return utf8 string';
     {
-        is $result, 'Überall', 'utf8 content: ' . $result;
+        is $result, Encode::encode_utf8('Überall'), 'utf8 content: ' . $result;
     }
 }
 else {
@@ -65,3 +73,5 @@ else {
 
     }
 }
+
+done_testing();

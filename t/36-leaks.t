@@ -1,14 +1,9 @@
-#!/bin/env perl
-use Devel::Cycle;
-BEGIN {
-  unless(grep /blib/, @INC) {
-    chdir 't' if -d 't';
-    unshift @INC, '../lib' if -d '../lib';
-  }
-}
+#!/usr/bin/perl
 
 use strict;
-use Test;
+use warnings;
+
+use Test::More;
 
 use SOAP::Lite
   on_fault => sub {
@@ -20,7 +15,7 @@ use SOAP::Lite
   }
 ;
 
-my($a, $s, $r);
+my ($a, $s, $r);
 
 my $proxy = 'http://services.soaplite.com/echo.cgi';
 
@@ -67,17 +62,23 @@ plan tests => 16;
     ok(exists $calls{DESTROY}{$_});
   }
 
-  %calls = ();
-  {
-    local $SOAP::Constants::DO_NOT_USE_XML_PARSER = 1;
-    my $soap = SOAP::Lite
-      -> uri("Echo")
-      -> proxy($proxy)
-      -> echo;
-  }
-  foreach (keys %{$calls{new}}) {
-    print "XML::Parser::Lite: $_\n";
-    ok(exists $calls{DESTROY}{$_});
+
+  SKIP: {
+      eval "require XML::Parser::Lite; 1;";
+      skip "XML::Parser::Lite is required for this test", 8 if $@;
+
+      %calls = ();
+      {
+          local $SOAP::Constants::DO_NOT_USE_XML_PARSER = 1;
+          my $soap = SOAP::Lite
+          -> uri("Echo")
+          -> proxy($proxy)
+          -> echo;
+      }
+      foreach (keys %{$calls{new}}) {
+          print "XML::Parser::Lite: $_\n";
+          ok(exists $calls{DESTROY}{$_});
+      }
   }
 
   # SOAP::Lite->import(trace => '-objects');

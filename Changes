@@ -1,7 +1,6 @@
 #
 # Revision history for Perl extension SOAP::Lite.
 #
-# $Id$
 
 The contents of this file provides a change history for the SOAP::Lite
 Perl module. New features are designated with a '+' and bug fixes with
@@ -15,7 +14,93 @@ http://rt.cpan.org/Public/Dist/Display.html?Name=SOAP-Lite
 -----------------------------------------------------------------------
 THIS RELEASE
 -----------------------------------------------------------------------
-0.716 
+
+    ! Minor kwalitee updates (@oeuftete)
+    ! #106688 encode utf8 content in test which fails under RHES 6.6
+
+1.19 August 26, 2015
+    ! #106665 Correct the version manually, no autoversioning, and the maintainer screwed up
+
+1.18 August 25, 2015
+    ! Fix a couple of cases where undefined values were being passed to functions [github/redhotpenguin]
+    ! Do not set content_length for compressed request [github/bor]
+    ! Add test for check return of send_receive(), add titles for some tests [github/bor]
+
+1.17 July 30, 2015
+    ! #106051 Fix utf8 encoding for CGI test (thanks cpan/ETHER for tips)
+
+1.16 July 23, 2015
+    ! Fix empty release. Note to self - do not release code when wife is in early labor
+
+1.15 July 21, 2015
+    + Preventing "billion laughs" exponential entity expansion attack [github/thilo-fester]
+
+1.14 March 24, 2015
+    + Add header and body tags [@bubi6608]
+    ! Fixed typo in trace logging example [@oschwald]
+    + Converted the dist from using ExtUtils::MakeMaker to using Dist::Zilla [@mvuets]
+    ! Cleaned up prereqs [@mvuets]
+    ! Cleaned up author and release tests [@mvuets]
+
+1.13 December 30, 2014
+    ! Fixed undefined value error when using bugzilla's xmlrpc.cgi (bugzilla's API) [dbeusee]
+
+1.12 November 26, 2014
+    ! #100557 Redefined sub in SOAP::Lite::Deserializer::XMLSchema2001
+
+1.11 February 21, 2014
+    ! #93080 bug when SOAP::Lite is trying to parse WSDL definition by https with custom settings
+
+1.10 January 23, 2014 
+    ! Fixed uninitialized warning when Context-Length is not set [github/dbeusee]
+    ! avoid string eval in as_base64 [github/otrosien]
+    ! #88915 warnings issued with using importing with +trace
+
+1.09 January 14, 2013
+    ! #92025 tighten multipart content-type matching [dmn@debian.org]
+
+1.08 November 8, 2013
+    ! #15703 add no_index for examples to prevent CPAN pollution [githumb.com/sergeyromanov]
+
+1.07 November 7, 2013
+    ! #89948 Remove warning when Content-Id is not present
+
+1.06 August 21, 2013
+    ! #87935 skip all MIME-Parser tests if it is not installed
+    ! #87787 Use of uninitialized value $ns in Lite.pm 
+
+1.05 August 18, 2013
+    ! #87848 Fix manifest, fix invalid http version from release blunder
+
+1.04 August 9, 2013
+    ! #87605 Skip XML::Parser::Lite tests if it is missing [github.com/omega] 
+
+1.03 August 4, 2013
+    ! #87195 Remove DIME::Tools dep until we can work around its issues
+
+1.02 July 30, 2013
+    ! #87421 1.01 release blew out xml versions. mea culpa.
+
+1.01 July 29, 2013
+    ! #84168 Test t/02-payload.t fails under Perl 5.17.10
+    ! #87127 TEST.pl removed from MANIFEST
+    ! revert #85713 - various reports of environment failures
+
+1.0 July 16, 2013
+    ! #85713 SOAP::Transport::HTTP, 500 error skips parsing of response
+    ! No more Windows 98 client support. Wait, wut?
+    ! Merge SOAP::Transport::TCP back into SOAP::Lite (for now)
+    ! #82416: xop href cid: URI encoded support reported by Michael R. Davis (mrdvt92)
+    ! #85208 bad test plan
+    ! #83750 different headers for mod_perl vs mod_perl2 [Mithun Bhattacharya]
+
+0.716 May 10, 2013
+    ! #17275 Client unable to detect fatal SOAP failure (e.g. unable to connect to host)
+    ! #81471 Force array context for correct Apache header parsing in SOAP::Transport::HTTP
+    ! #45611 deserializing SOAP message with composite attachment raises exception
+    ! #84168 Test t/02-payload.t fails under Perl 5.17.10
+    ! #85098 Monkey patch for LWP::Protocol confuses the toolchain
+    ! #78692 / #84724 / #83715 Sending large object (many levels deep) throws error Incorrect parameter
     ! #78502 t/08-schema.t noisy under 5.17.2 (unescaped left brace in regex  is deprecated)
     ! #78608 Documentation for "+trace"
     ! #78639 Spelling error reported by Debian tools
